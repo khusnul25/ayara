@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>THE REVANANTS || MD BY FIY</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #ffffff;
+            --text: #1a1a1a;
+            --accent: #333333;
+            --muted: #757575;
+            --border: #e0e0e0;
+        }
+
+        * { box-sizing: border-box; }
+        body { 
+            margin: 0; padding: 0; 
+            background-color: var(--bg); 
+            color: var(--text);
+            font-family: 'Inter', sans-serif;
+            line-height: 1.5;
+            overflow-x: hidden; /* Mencegah scroll horizontal */
+        }
+
+        /* --- LOGIN OVERLAY --- */
+        #login-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: #000; z-index: 2000;
+            display: flex; flex-direction: column; justify-content: center; align-items: center;
+            transition: transform 0.6s cubic-bezier(0.77, 0, 0.175, 1);
+        }
+        .login-content { text-align: center; color: white; padding: 20px; }
+        .login-content h1 { font-family: 'Cinzel', serif; font-size: 2.2rem; margin-bottom: 5px; letter-spacing: 4px; }
+        .login-content p { font-size: 0.8rem; letter-spacing: 2px; color: #888; text-transform: uppercase; margin-bottom: 40px; }
+        .enter-btn {
+            background: transparent; border: 1px solid white; color: white;
+            padding: 15px 40px; font-family: 'Inter'; font-size: 0.9rem;
+            text-transform: uppercase; cursor: pointer; transition: 0.3s;
+        }
+        .enter-btn:hover { background: white; color: black; }
+
+        /* --- NAVIGATION --- */
+        .nav-header {
+            position: sticky; top: 0; background: white;
+            border-bottom: 1px solid var(--border);
+            padding: 15px 20px; display: flex; justify-content: space-between; align-items: center; z-index: 100;
+        }
+        .nav-header span { font-family: 'Cinzel', serif; font-size: 1.2rem; font-weight: bold; }
+        
+        .sidebar {
+            position: fixed; top: 0; right: -100%; width: 80%; height: 100%;
+            background: white; z-index: 150; transition: 0.4s;
+            padding: 80px 30px; border-left: 1px solid var(--border);
+        }
+        .sidebar-active { right: 0 !important; }
+
+        /* --- CONTENT STYLES --- */
+        .header-main { text-align: center; padding: 30px 20px; border-bottom: 3px solid black; }
+        .header-main h2 { font-family: 'Libre Baskerville', serif; font-size: 2.8rem; margin: 0; }
+        
+        .content-section { padding: 20px; }
+        .main-img { width: 100%; height: auto; max-height: 300px; object-fit: cover; filter: grayscale(100%); margin-bottom: 20px; border: 1px solid #000; }
+        
+        /* CSS UNTUK LINK AGAR TIDAK MELEBAR */
+        .link-box {
+            padding: 15px; 
+            border: 1px dashed black; 
+            margin-bottom: 20px;
+            word-break: break-all; /* Memaksa link panjang turun ke bawah */
+        }
+        .link-box a {
+            color: #0044cc;
+            text-decoration: none;
+            font-size: 0.85rem;
+            display: inline-block;
+            margin-top: 5px;
+        }
+        .link-box a:hover { text-decoration: underline; }
+
+        /* --- BLACKLIST & OWNERS --- */
+        .owner-item { display: flex; align-items: center; gap: 15px; padding: 10px; border: 1px solid var(--border); margin-bottom: 10px;}
+        .owner-item img { width: 60px; height: 60px; border-radius: 50%; object-fit: cover; filter: grayscale(100%); }
+        
+        .blacklist-item { background: #f9f9f9; border-left: 4px solid black; padding: 15px; margin-bottom: 15px; }
+
+        /* UTILS */
+        .overlay-active { transform: translateY(-100%); }
+        .section-label { font-family: 'Cinzel', serif; font-size: 1.1rem; border-bottom: 2px solid black; margin: 30px 0 15px 0; padding-bottom: 5px; }
+    </style>
+</head>
+<body>
+
+    <div id="login-overlay">
+        <div class="login-content">
+            <h1>REVANANTS</h1>
+            <p>The Heritage of Solidarity</p>
+            <button class="enter-btn" onclick="enterSite()">Access Portal Trv</button>
+        </div>
+    </div>
+
+    <nav class="nav-header">
+        <span>TRV23</span>
+        <div class="burger" onclick="toggleMenu()" style="cursor:pointer">
+            <div style="width:22px; height:2px; background:black; margin:4px 0"></div>
+            <div style="width:22px; height:2px; background:black; margin:4px 0"></div>
+            <div style="width:22px; height:2px; background:black; margin:4px 0"></div>
+        </div>
+    </nav>
+
+    <div class="sidebar" id="sidebar">
+        <a href="#home" onclick="toggleMenu()" style="display:block; margin-bottom:20px; font-size:1.5rem; text-decoration:none; color:black;">Main Page</a>
+        <a href="#owners" onclick="toggleMenu()" style="display:block; margin-bottom:20px; font-size:1.5rem; text-decoration:none; color:black;">Executives</a>
+        <a href="#links" onclick="toggleMenu()" style="display:block; margin-bottom:20px; font-size:1.5rem; text-decoration:none; color:black;">Group Links</a>
+        <a href="#blacklist" onclick="toggleMenu()" style="display:block; margin-bottom:20px; font-size:1.5rem; text-decoration:none; color:black;">Blacklist</a>
+    </div>
+
+    <header class="header-main" id="home">
+        <h2>THE REV</h2>
+        <div style="font-size: 0.7rem; text-transform: uppercase; letter-spacing: 1px; border-top: 1px solid #000; border-bottom: 1px solid #000; padding: 5px 0; margin-top: 10px;">
+            Indonesian Brotherhood • Est. 2025 • Vol. 01
+        </div>
+    </header>
+
+    <main class="content-section">
+        <img src="https://files.catbox.moe/qcoxlw.jpeg" class="main-img" alt="Hero">
+        <h1 style="font-family: 'Libre Baskerville', serif; font-size: 1.8rem; line-height: 1.2;">Apa Itu The Revanants</h1>
+        <p style="text-align: justify; font-size: 0.95rem;">
+            <i>The Revanants</i> adalah gc rusuh yang memperkuat persatuan dan membasmi gc burik di dunia roleplayer. 
+            Gc ini bersangkutan dengan rprl area voice notice, pap, os, and <b>FREE TOXIC</b> 🇲🇦.
+        </p>
+        <p style="font-size: 0.85rem; font-weight: bold;">
+            🇲🇦 PDN: TRV23 <br>
+            🇲🇦 PUTLOCK: We are anywhere and anytime <br>
+            🇲🇦 MARGA: THE REVANANTS HERE
+        </p>
+
+        <div class="section-label" id="links">OFFICIAL LINKS</div>
+        
+        <div class="link-box">
+            <h4 style="margin:0">Group WhatsApp Trv23</h4>
+            <a href="https://chat.whatsapp.com/BpF3b8poBIXEoUOvjf4l24" target="_blank">https://chat.whatsapp.com/BpF3b8poBIXEoUOvjf4l24</a>
+        </div>
+
+        <div class="link-box">
+            <h4 style="margin:0">Base Setor Trv23</h4>
+            <a href="https://chat.whatsapp.com/EXsGns2JMcq9TNSzN673gF" target="_blank">https://chat.whatsapp.com/EXsGns2JMcq9TNSzN673gF</a>
+        </div>
+
+        <div class="link-box">
+            <h4 style="margin:0">WhatsApp Channel</h4>
+            <a href="https://whatsapp.com/channel/0029VbBrG20002T2qod0dv0U" target="_blank">https://whatsapp.com/channel/0029VbBrG20002T2qod0dv0U</a>
+        </div>
+
+        <div class="section-label" id="owners">THE EXECUTIVES</div>
+        <div class="owner-list">
+            <div class="owner-item">
+                <img src="https://files.catbox.moe/hbtav6.jpeg" alt="Madeline">
+                <div class="owner-info">
+                    <h4 style="margin:0">Madeline</h4>
+                    <p style="margin:0; font-size:0.8rem; color:gray">Founder</p>
+                </div>
+            </div>
+            <div class="owner-item">
+                <img src="https://files.catbox.moe/hbtav6.jpeg" alt="Xanna">
+                <div class="owner-info">
+                    <h4 style="margin:0">Xanna</h4>
+                    <p style="margin:0; font-size:0.8rem; color:gray">Co-Founder</p>
+                </div>
+            </div>
+        </div>
+               <div class="owner-item">
+                <img src="https://files.catbox.moe/hbtav6.jpeg" alt="Alexa">
+                <div class="owner-info">
+                    <h4 style="margin:0">Alexa</h4>
+                    <p style="margin:0; font-size:0.8rem; color:gray">Owner</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="section-label">ACTIVE EVENTS</div>
+        <div style="padding: 15px; border: 1px solid black; margin-bottom: 10px;">
+            <small style="color:red; font-weight:bold">STARTNOW</small>
+            <h4 style="margin:5px 0">Nogel 100</h4>
+            <p style="font-size: 0.85rem; margin:0">Event meningkatkan kekompakan anggota Trv23 melalui Nogel 100.</p>
+        </div>
+          <div class="section-label">ACTIVE EVENTS</div>
+        <div style="padding: 15px; border: 1px solid black; margin-bottom: 10px;">
+            <small style="color:red; font-weight:bold">ONGOING</small>
+            <h4 style="margin:5px 0">Opmem</h4>
+            <p style="font-size: 0.85rem; margin:0">Trv akan melakukan open member dalam waktu dekat ini</p>
+        </div>
+
+        <div class="section-label" id="blacklist">BLACKLIST DATABASE</div>
+        <div class="blacklist-item">
+            <span style="font-size:0.7rem; color:gray; text-transform:uppercase; font-weight:bold">Name / Age</span>
+            <strong style="display:block">Unknown User / 18</strong>
+            <span style="font-size:0.7rem; color:gray; text-transform:uppercase; font-weight:bold; margin-top:10px; display:block">Reason</span>
+            <p style="margin:0; font-size:0.9rem">Penyebaran hoaks dan adu domba antar member.</p>
+        </div>
+    </main>
+
+    <footer style="background: #000; color: white; padding: 40px 20px; text-align: center; font-size: 0.7rem;">
+        <p style="letter-spacing: 2px;">THE REVANANTS OFFICIAL PORTAL</p>
+        <p style="color: #555;">2026 Designed By Afiya</p>
+    </footer>
+
+    <script>
+        function enterSite() {
+            document.getElementById('login-overlay').classList.add('overlay-active');
+        }
+
+        function toggleMenu() {
+            document.getElementById('sidebar').classList.toggle('sidebar-active');
+        }
+    </script>
+</body>
+</html>
