@@ -2,22 +2,22 @@ const fs = require('fs')
 const chalk = require('chalk')
 
 // --- DATA UTAMA ---
-global.owner = ['628123456789'] // Ganti dengan nomor WhatsApp kamu
-global.botNumber = '628xxx' // Masukkan nomor bot kamu (awali dengan 62)
+global.owner = ['6285707149714'] // Ganti dengan nomor WhatsApp kamu
+global.botNumber = '6285182291658' // Masukkan nomor bot kamu (awali dengan 62)
 global.usePairingCode = true // Set true untuk pakai kode, false untuk scan QR
 global.namaBot = 'Ayara Multi Device'
-global.namaOwner = 'Khusnul'
+global.namaOwner = 'Afiya'
 global.packname = 'Ayara-Bot' // Nama package sticker
-global.author = 'By Khusnul'   // Author sticker
+global.author = 'By Afiya'   // Author sticker
 
 // --- PENGATURAN EKONOMI (Limit & Balance) ---
-global.limitAwal = 20      // Limit gratis harian untuk user biasa
+global.limitAwal = 10      // Limit gratis harian untuk user biasa
 global.balanceAwal = 1000  // Saldo awal user baru
 global.limitPremium = 9999 // Limit untuk user premium
-global.priceLimit = 500    // Harga 1 limit jika dibeli dengan balance
+global.priceLimit = 1000    // Harga 1 limit jika dibeli dengan balance
 
 // --- MEDIA ---
-global.thumbnail = 'https://telegra.ph/file/p/example.jpg' // Link foto bot (URL)
+global.thumbnail = 'https://files.catbox.moe/pykr0e.jpg' // Link foto bot (URL)
 global.thumb = fs.readFileSync('./media/thumbnail.jpg') // Path lokal jika ada
 
 // --- PESAN REPLY (Add Msg Reply) ---
